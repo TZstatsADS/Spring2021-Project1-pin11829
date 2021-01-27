@@ -2,13 +2,15 @@
 title: "Money Wars in Election"
 output:
   pdf_document: default
+  html_document:
+    df_print: paged
   html_notebook: default
 ---
 
 <img src="../figs/money.jpeg" width="700">
 
 ```{r, warning=FALSE, message=FALSE,echo=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ```{r, message=FALSE, warning=FALSE,echo=FALSE}
@@ -67,14 +69,12 @@ use_data <- read_csv(urlfile)
 First, we investigate people's views on the current economic environment. How do they feel? And what is their financial situation?
 
 
-```{r,echo=FALSE}
+```{r,echo=FALSE, warning=FALSE, message=FALSE}
 all_people_anes <- filter(use_data, use_data$inc_anes<66)
 all_people_cps <- filter(use_data, use_data$inc_cps<66)
 all_people_cpsmod <- filter(use_data, use_data$inc_cpsmod<66)
-all_people_anes %>% mutate(income=as_factor(all_people_anes$inc_anes))
-all_people_cps %>% mutate(income=as_factor(all_people_cps$inc_cps))
-all_people_cpsmod %>% mutate(income=as_factor(all_people_cpsmod$inc_cpsmod))
-all_income <- rbind(all_people_anes, all_people_cps, all_people_cpsmod)
+all_income <- rbind(all_people_anes %>% mutate(income=as_factor(all_people_anes$inc_anes)), all_people_cps %>% mutate(income=as_factor(all_people_cps$inc_cps))
+, all_people_cpsmod %>% mutate(income=as_factor(all_people_cpsmod$inc_cpsmod)))
 ```
 
 ### People are very anxious about the current economic environment
@@ -143,7 +143,7 @@ p <- ggplot(data = anes_vote_fin_,
     x = income, 
     y = Ratio,
     fill = factor(vote20jb)),  xlab = "income") 
-p + geom_col(position= "fill") + labs(title="The Ratio of president preference in each financial condition") + scale_fill_manual(values = c("firebrick2", "dodgerblue3", "gold1", "lightgoldenrod1", "white")) + theme(plot.title = element_text(colour = "black", face = "bold", size = 40, hjust = 0.5), axis.title.x = element_text(size = 30, vjust = 0.5), axis.title.y = element_text(size = 30, vjust = 0.5))
+p + geom_col(position= "fill") + labs(title="The Ratio of president preference in each financial condition") + scale_fill_manual(values = c("firebrick2", "dodgerblue3", "gold1", "lightgoldenrod1", "white")) + theme(plot.title = element_text(colour = "black", face = "bold", size = 35, hjust = 0.5), axis.title.x = element_text(size = 20, vjust = 0.5), axis.title.y = element_text(size = 30, vjust = 0.5))
 
 
 ```
@@ -168,7 +168,7 @@ p <- ggplot(data = anes_party_fin_,
     x = income, 
     y = Ratio,
     fill = factor(cvote2020)),  xlab = "income") 
-p + geom_col(position= "fill") + labs(title="The Ratio of party preference in each financial condition") + scale_fill_manual(values = c("dodgerblue3", "firebrick2", "gold1", "lightgoldenrod1", "white")) + theme(plot.title = element_text(colour = "black", face = "bold", size = 40, hjust = 0.5), axis.title.x = element_text(size = 30, vjust = 0.5), axis.title.y = element_text(size = 30, vjust = 0.5))
+p + geom_col(position= "fill") + labs(title="The Ratio of party preference in each financial condition") + scale_fill_manual(values = c("dodgerblue3", "firebrick2", "gold1", "lightgoldenrod1", "white")) + theme(plot.title = element_text(colour = "black", face = "bold", size = 35, hjust = 0.5), axis.title.x = element_text(size = 20, vjust = 0.5), axis.title.y = element_text(size = 30, vjust = 0.5))
 
 ```
 
@@ -187,7 +187,7 @@ We can see that if the tax rate is lowered, people will be happier. Therefore, i
 ecno = filter(all_income, all_income$taxecon<8)
 p <- ggplot(data = ecno, aes(x = taxecon)) + geom_bar(colour = 1, 
     width = 0.4, fill = "steelblue1") + labs(x = "Helped<-------------------------------------------------------------------------->Hurt", title = "People's opinion about 2017 law")
-p + theme(plot.title = element_text(colour = "black", face = "bold", size = 15, hjust = 0.5), axis.text.x = element_text(angle = 0, vjust = 0.5))
+p + theme(plot.title = element_text(colour = "black", face = "bold", size = 10, hjust = 0.5), axis.text.x = element_text(angle = 0, vjust = 0.5))
 ```
 
 
@@ -202,7 +202,7 @@ data_eco <- all_income %>%
   summarise(n = n())
 p <- ggplot(data = data_eco, 
             mapping = aes(income, econpres7))
-p + geom_tile(aes(fill = n), colour = "white") + scale_fill_gradient2(low = "white", high = "steelblue") + theme(plot.title = element_text(colour = "black", face = "bold", size = 40, hjust = 0.5), axis.text = element_text(size = 20,angle = 0, vjust = 0.5), axis.title = element_text(size=30,face="bold")) + labs(x = "Poor people <----------------------------------------------------------------------------------------> Rich people", y = "Favor <----------------------> Oppose", title = "Favor about Trump") 
+p + geom_tile(aes(fill = n), colour = "white") + scale_fill_gradient2(low = "white", high = "steelblue") + theme(plot.title = element_text(colour = "black", face = "bold", size = 35, hjust = 0.5), axis.text = element_text(size = 10,angle = 0, vjust = 0.5), axis.title = element_text(size=30,face="bold")) + labs(x = "Poor people <----------------------------------------------------------------------------------------> Rich people", y = "Favor <----------------------> Oppose", title = "Favor about Trump") 
 ```
 
 ---
@@ -239,7 +239,7 @@ data_eco_tax <- tax_total_in %>%
   summarise(n = n())
 p <- ggplot(data = data_eco_tax, 
             mapping = aes(income, tax))
-p + geom_tile(aes(fill = n), colour = "white") + scale_fill_gradient2(low = "white", high = "#008B45")  + theme(plot.title = element_text(colour = "black", face = "bold", size = 40, hjust = 0.5), axis.text = element_text(size = 20,angle = 0, vjust = 0.5), axis.title = element_text(size=30,face="bold")) + labs(x = "Poor people <----------------------------------------------------------------------------------------> Rich people", y = "Favor <----------------------> Oppose", title = "Taxing people making $10 million a year or more than at a 70% rate") 
+p + geom_tile(aes(fill = n), colour = "white") + scale_fill_gradient2(low = "white", high = "#008B45")  + theme(plot.title = element_text(colour = "black", face = "bold", size = 35, hjust = 0.5), axis.text = element_text(size = 10,angle = 0, vjust = 0.5), axis.title = element_text(size=30,face="bold")) + labs(x = "Poor people <----------------------------------------------------------------------------------------> Rich people", y = "Favor <----------------------> Oppose", title = "Taxing people making $10 million a year or more than at a 70% rate") 
 ```
 
 #### Finally, we can announce that the candidate who want to earn more votes, taxing more on the people who make $10 million a year!
