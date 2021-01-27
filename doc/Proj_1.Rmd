@@ -1,6 +1,8 @@
 ---
-title: "Money War in Election"
-output: html_notebook
+title: "Money Wars in Election"
+output:
+  html_notebook: default
+  pdf_document: default
 ---
 
 <img src="../figs/money.jpeg" width="700">
@@ -105,7 +107,9 @@ As we seen above, we can find that the median of the annual income is:
 median(c(all_people_cps$inc_cps, all_people_anes$inc_anes, all_people_cpsmod$inc_cpsmod))
 ```
 
+
 Which is range between $50,000 - $54,999. Moreover, we found that the distribution of annual income presented in a **V** shape means most people are either rich or poor. How to make society more balanced is one of the most important issues faced by every presidential candidate.
+
 ---
 
 ## Question2: According to different financial conditions, which candidate and political party they will vote?

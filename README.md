@@ -9,10 +9,13 @@ This is the first and only *individual* (as opposed to *team*) this semester.
 
 Term: Spring 2021
 
-+ Projec title: Lorem ipsum dolor sit amet
-+ This project is conducted by [your name]
++ Projec title: Money Wars in Election
++ This project is conducted by **Pin-Chun Chen**
 
-+ Project summary: [a short summary] Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
++ Project summary: Money occupies a significant part of people’s lives, and it is also closely related to national policies. If you can make more money for the people, you have a better chance of earning everyone’s votes. Therefore, we will use the ANES dataset to delve into this topic by solving the following three questions: 
+1. The annual income distribution of the American family?
+2. According to different financial conditions, which candidate and political party they will vote?
+3. How to use economic policies to change people’s preference?
 
 Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is orgarnized as follows.
 
